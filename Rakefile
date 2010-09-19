@@ -13,11 +13,11 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "vlad-extras"
-  gem.summary = %Q{Vlad}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Vlad plugin with extensions for Nginx, nodeJS, monit and more.}
+  gem.description = %Q{}
   gem.email = "mail@dennisbloete.de"
   gem.homepage = "http://github.com/dbloete/vlad-extras"
-  gem.authors = ["Dennis"]
+  gem.authors = ["Dennis Blöte"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  spec.add_runtime_dependency 'jabber4r', '> 0.1'
