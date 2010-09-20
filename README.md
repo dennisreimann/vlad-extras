@@ -1,10 +1,27 @@
-vlad-extras
-===========
+# vlad-extras
 
-Plugin for [Vlad the Deployer](http://rubyhitsquad.com/Vlad_the_Deployer.html) with extensions for Nginx, nodeJS, monit and more.
+Plugin for [Vlad the Deployer](http://rubyhitsquad.com/Vlad_the_Deployer.html) with extensions for Nginx, nodeJS, monit and more. The easiest way to use this gem is using Bundler and including it in your Gemfile:
 
-Note on Patches/Pull Requests
------------------------------
+    gem 'vlad'
+    gem 'vlad-extras'
+
+## Using the recipes
+
+By loading vlad-extras you get some extra recipes per default:
+
+* Symlinks: Lets you set a symlinks hash and gives you a task that links files and folders from your shared directory to the current release.
+
+Other recipes can be used by defining them when you load Vlad, for example the :type and :web flavor:
+
+* Nginx (:web) - Just some basic tasks for starting/stopping Nginx as your webserver.
+* nodeJS (:type) - Tasks for managing your dependencies with [ndistro](http://github.com/visionmedia/ndistro) and starting/stopping your app with [spark](http://github.com/senchalabs/spark/).
+
+Load them like this:
+
+    Vlad.load(:web => :nginx, :type => :nodejs)
+
+## Note on Patches/Pull Requests
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
@@ -13,6 +30,6 @@ Note on Patches/Pull Requests
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-Copyright
----------
-Copyright (c) 2010 Dennis. See LICENSE for details.
+## Copyright
+
+Copyright (c) 2010 Dennis Blöte. See LICENSE for details.
