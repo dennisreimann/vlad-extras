@@ -1,5 +1,4 @@
-require 'rubygems'
-require 'vlad'
-
-# load extra recipes
-require 'vlad/symlinks'
+# Load extra recipes
+%w(symlinks).each do |recipe|
+  require File.dirname(__FILE__) + "/vlad/#{recipe}.rb"
+end

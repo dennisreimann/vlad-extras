@@ -10,14 +10,14 @@ namespace :vlad do
     set :ndistro_cmd, nil
     
     desc "Install ndistro"
-    remote_task :setup, :roles => :web do
+    remote_task :setup, :roles => :app do
       bin_dir = File.join(shared_path, 'bin')
       run "mkdir -p #{bin_dir}"
       run "cd #{bin_dir} && curl http://github.com/visionmedia/ndistro/raw/master/install | sh"
     end
     
     desc "Install dependencies"
-    remote_task :install_deps, :roles => :web do
+    remote_task :install_deps, :roles => :app do
       %w(bin lib modules).each do |dir|
         shared_dir_path = File.join(shared_path, dir)
         release_dir_path = File.join(current_release, dir)
@@ -29,7 +29,7 @@ namespace :vlad do
     end
 
     desc "Clean dependencies"
-    remote_task :clean_deps, :roles => :web do
+    remote_task :clean_deps, :roles => :app do
       %w(bin lib modules).each do |dir|
         shared_dir_path = File.join(shared_path, dir)
         run "rm -r #{shared_dir_path}"
