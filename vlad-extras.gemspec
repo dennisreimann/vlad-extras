@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dennis Bl\303\266te"]
-  s.date = %q{2010-09-20}
+  s.date = %q{2010-09-28}
   s.description = %q{}
   s.email = %q{mail@dennisbloete.de}
   s.extra_rdoc_files = [
@@ -26,11 +26,13 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/vlad-extras.rb",
+    "lib/vlad/monit.rb",
     "lib/vlad/ndistro.rb",
     "lib/vlad/nginx.rb",
     "lib/vlad/nodejs.rb",
     "lib/vlad/spark.rb",
     "lib/vlad/symlinks.rb",
+    "lib/vlad/writer.rb",
     "spec/.rspec",
     "spec/spec_helper.rb",
     "spec/vlad-extras_spec.rb",
