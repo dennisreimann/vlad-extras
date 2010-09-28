@@ -10,6 +10,7 @@ Plugin for [Vlad the Deployer](http://rubyhitsquad.com/Vlad_the_Deployer.html) w
 By loading vlad-extras you get some extra recipes per default:
 
 * Symlinks: Lets you set a symlinks hash and gives you a task that links files and folders from your shared directory to the current release.
+* Monit: Control monit with start/stop/restart/reload/syntax tasks.
 
 Other recipes can be used by defining them when you load Vlad, for example the :type and :web flavor:
 
