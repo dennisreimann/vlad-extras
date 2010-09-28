@@ -41,15 +41,19 @@ namespace :vlad do
       end
     end
     
-    # Accessing Rake::RemoteTask.roles requires domain to be set, we
-    # just set it blank in here so that RemoteTask does not complain
-    set :domain, ""
+    desc "Write out files to the app server."
+    remote_task :app do
+      Vlad::Writer.write_role("app")
+    end
     
-    Rake::RemoteTask.roles.keys.each do |role|
-      desc "Write out #{role} server files."
-      remote_task role.to_sym, :roles => role.to_sym do
-        Vlad::Writer.write_role(role)
-      end
+    desc "Write out files to the db server."
+    remote_task :db do
+      Vlad::Writer.write_role("db")
+    end
+    
+    desc "Write out files to the web server."
+    remote_task :web do
+      Vlad::Writer.write_role("web")
     end
     
   end

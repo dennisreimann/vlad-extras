@@ -2,9 +2,6 @@ require 'vlad'
 
 namespace :vlad do
   
-  set :mkdirs, %w(tmp)
-  set :shared_paths, { 'log' => 'log' }
-  
   namespace :ndistro do
     
     set :ndistro_cmd, nil
@@ -24,8 +21,8 @@ namespace :vlad do
         run "mkdir -p #{shared_dir_path}"
         run "ln -s #{shared_dir_path} #{release_dir_path}"
       end
-      ndistro_cmd = Rake::RemoteTask.fetch(:ndistro_cmd, File.join(shared_path, 'bin', 'ndistro'))
-      run "cd #{current_release} && #{ndistro_cmd}"
+      cmd = ndistro_cmd || File.join(shared_path, 'bin', 'ndistro')
+      run "cd #{current_release} && #{cmd}"
     end
 
     desc "Clean dependencies"
