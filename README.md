@@ -37,4 +37,4 @@ Load them like this:
 
 ## Copyright
 
-Copyright (c) 2010 Dennis Blöte. See LICENSE for details.
+Copyright (c) 2010 Dennis Blöte. 2011 Danil Pismenny. See LICENSE for details.
