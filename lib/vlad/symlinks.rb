@@ -1,6 +1,13 @@
+# -*- coding: utf-8 -*-
 require 'vlad'
 
 namespace :vlad do
+
+  def symlink(source, destination)
+    # Create symlink unless file exists
+    run "test -f #{current_path}/#{destination} || ln -s #{shared_path}/#{source} #{current_path}/#{destination}"
+  end
+
 
   set :symlinks, {}
 
@@ -8,19 +15,19 @@ namespace :vlad do
   remote_task :symlink, :roles => :web do
     if symlinks.is_a? Hash
       symlinks.each_pair do |source, destination|
-        run "ln -s #{shared_path}/#{source} #{current_path}/#{destination}"
+        symlink(source, destination)
       end
     else
       symlinks.each do |file|
-        run "ln -s #{shared_path}/#{file} #{current_path}/#{file}"
+        symlink(file, file)
       end
     end
   end
 
-  remote_task :update do
-    # Rake::Task['vlad:symlink'].invoke
-    # Rake::Task['vlad:bundle_install'].invoke
-    # Rake::Task['vlad:trust_scm_rvm'].invoke
-  end
+
+  # Не работает потому что remote
+  # Rake::Task["vlad:update_symlinks"].enhance do
+  #   Rake::Task['vlad:symlink'].invoke
+  # end
 
 end
