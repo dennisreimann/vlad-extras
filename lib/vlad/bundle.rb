@@ -2,6 +2,9 @@
 require 'vlad'
 
 namespace :vlad do
+
+  set :rake_cmd, 'bundle exec rake'
+
   namespace :bundle do
     set :bundle_without, "development test"
 
