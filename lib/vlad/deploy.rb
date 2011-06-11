@@ -2,8 +2,7 @@ require 'vlad'
 
 namespace :vlad do
 
-  desc "Full deployment cycle"
-  task "deploy" => %w[
+  set :deploy_tasks, %w[
       vlad:update
       vlad:symlink_release
       vlad:symlink
@@ -12,6 +11,13 @@ namespace :vlad do
       vlad:start_app
       vlad:cleanup
     ]
+
+  desc "Full deployment cycle"
+  task "deploy" do
+    deploy_tasks.each do |task|
+      Rake::Task[task].invoke
+    end
+  end
 
 end
 #      vlad:hoptoad
