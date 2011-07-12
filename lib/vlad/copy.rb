@@ -3,18 +3,18 @@ require 'vlad'
 
 namespace :vlad do
 
-  set :copy, {}
+  set :copy_files, []
 
-  desc "Copy fiels"
+  desc "Copy selected files into remote shared directory"
   task :copy do
     print "Copying files to server: "
-    copy.each do |file|
-      dir = File.dirname(file)
-      `ssh #{domain} "mkdir -p #{shared_path}/#{dir}"` if dir
+    copy_files.each do |file|
       print "#{file}, "
+      dir = File.dirname(file)
+      `ssh #{domain} 'mkdir -p #{shared_path}/#{dir}'` if dir
       `scp -r #{file} #{domain}:#{shared_path}/#{file}`
     end
-    puts ". Done"
+    puts "Done"
   end
 
   task :setup do

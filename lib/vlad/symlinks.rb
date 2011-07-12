@@ -3,7 +3,7 @@ require 'vlad'
 
 namespace :vlad do
 
-  def symlink(source, destination)
+  def remote_symlink(source, destination)
     # Create symlink unless file exists
     run "test -f #{current_path}/#{destination} || ln -s #{shared_path}/#{source} #{current_path}/#{destination}"
   end
@@ -11,7 +11,7 @@ namespace :vlad do
 
   set :symlinks, {}
 
-  desc "Symlinks files"
+  desc "Symlinks files (usualy shared)"
   remote_task :symlink, :roles => :web do
     if symlinks.is_a? Hash
       symlinks.each_pair do |source, destination|
@@ -19,7 +19,7 @@ namespace :vlad do
       end
     else
       symlinks.each do |file|
-        symlink(file, file)
+        remote_symlink(file, file)
       end
     end
   end
