@@ -13,7 +13,7 @@ namespace :vlad do
       if config['password'].blank?
         command << "#{config['database']}"
       else
-        command << "\"dbname=#{config['database']} password=#{config['password']}\""
+        command << "'dbname=#{config['database']} password=#{config['password']}'"
       end
       command
     end
@@ -41,7 +41,7 @@ namespace :vlad do
         #   command << "--password=#{config['password'] || ''} "
         #   command << config['database']
       when 'postgresql'
-        remote_command = "pg_dump " + prepare_psql(prod_config)
+        remote_command = "pg_dump -cxO " + prepare_psql(prod_config)
         local_command = "psql " + prepare_psql(dev_config)
       else
         puts "Unsupported database adapter: #{config['adapter']}"
