@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{vlad-extras}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dennis Blöte"]
-  s.date = %q{2011-03-17}
+  s.date = %q{2011-07-13}
   s.description = %q{}
   s.email = %q{mail@dennisbloete.de}
   s.extra_rdoc_files = [
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/vlad-extras.rb",
+    "lib/vlad/delayed_job.rb",
     "lib/vlad/monit.rb",
     "lib/vlad/ndistro.rb",
     "lib/vlad/nginx.rb",
@@ -41,7 +42,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{http://github.com/dbloete/vlad-extras}
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.5.0}
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{Vlad plugin with extensions for Nginx, nodeJS, monit and more.}
   s.test_files = [
     "spec/spec_helper.rb",
