@@ -6,19 +6,11 @@ namespace :vlad do
   
     set :monit_cmd, "/etc/init.d/monit"
     
-    desc "Start monit"
-    remote_task :start, :roles => :web  do
-      sudo "#{monit_cmd} start"
-    end
-    
-    desc "Stop monit"
-    remote_task :stop, :roles => :web  do
-      sudo "#{monit_cmd} stop"
-    end
-    
-    desc "Restart monit"
-    remote_task :restart, :roles => :web  do
-      sudo "#{monit_cmd} restart"
+    %w(start restart stop).each do |task|
+      desc "#{task.capitalize} monit"
+      remote_task task.to_sym, :roles => :app do
+        run "#{monit_cmd} #{task}"
+      end
     end
     
     desc "Reload monit config"
