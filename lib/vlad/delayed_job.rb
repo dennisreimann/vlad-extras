@@ -14,10 +14,4 @@ namespace :vlad do
     end
   end
   
-  desc "Full deployment cycle: Update, install bundle, migrate, restart, cleanup"
-  remote_task :deploy, :roles => :app do
-    %w(update symlink bundle:install migrate delayed_job:restart start_app cleanup).each do |task|
-      Rake::Task["vlad:#{task}"].invoke
-    end
-  end
 end
