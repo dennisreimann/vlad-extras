@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 require 'vlad'
 
+
+# TODO install bundler when it does not exist
+
 namespace :vlad do
 
   set :rake_cmd, 'bundle exec rake'
