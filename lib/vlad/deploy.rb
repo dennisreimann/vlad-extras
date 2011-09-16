@@ -12,7 +12,7 @@ namespace :vlad do
       vlad:cleanup
     ]
 
-  desc "Full deployment cycle"
+  desc "Full deployment cycle: #{deploy_tasks.join(', ')}"
   task "deploy" do
     deploy_tasks.each do |task|
       Rake::Task[task].invoke
@@ -20,11 +20,3 @@ namespace :vlad do
   end
 
 end
-#      vlad:hoptoad
-
-# remote_task :update do
-#     Rake::Task['vlad:symlink'].invoke
-#     # Rake::Task['vlad:bundle_install'].invoke
-#     # Rake::Task['vlad:trust_scm_rvm'].invoke
-#   end
-
