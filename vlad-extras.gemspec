@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{vlad-extras}
-  s.version = "0.1.2"
+  s.name = "vlad-extras"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Dennis Blöte"]
-  s.date = %q{2011-07-20}
-  s.description = %q{}
-  s.email = %q{mail@dennisbloete.de}
+  s.authors = ["Dennis Bl\u{f6}te"]
+  s.date = "2011-09-22"
+  s.description = ""
+  s.email = "mail@dennisbloete.de"
   s.extra_rdoc_files = [
     "LICENSE",
     "README.md"
@@ -26,24 +26,32 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/vlad-extras.rb",
+    "lib/vlad/bundle.rb",
+    "lib/vlad/copy.rb",
+    "lib/vlad/db_clone.rb",
     "lib/vlad/delayed_job.rb",
+    "lib/vlad/deploy.rb",
+    "lib/vlad/hoptoad.rb",
+    "lib/vlad/loop_dance.rb",
     "lib/vlad/monit.rb",
     "lib/vlad/ndistro.rb",
+    "lib/vlad/new_relic.rb",
     "lib/vlad/nginx.rb",
     "lib/vlad/nodejs.rb",
     "lib/vlad/rvm.rb",
     "lib/vlad/spark.rb",
     "lib/vlad/symlinks.rb",
+    "lib/vlad/thinking_sphinx.rb",
     "lib/vlad/writer.rb",
     "spec/.rspec",
     "spec/spec_helper.rb",
     "spec/vlad-extras_spec.rb",
     "vlad-extras.gemspec"
   ]
-  s.homepage = %q{http://github.com/dbloete/vlad-extras}
+  s.homepage = "http://github.com/dbloete/vlad-extras"
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{Vlad plugin with extensions for Nginx, nodeJS, monit and more.}
+  s.rubygems_version = "1.8.10"
+  s.summary = "Vlad plugin with extensions for Nginx, nodeJS, monit and more."
   s.test_files = [
     "spec/spec_helper.rb",
     "spec/vlad-extras_spec.rb"
