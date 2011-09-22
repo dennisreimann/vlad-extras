@@ -2,8 +2,8 @@
 
 Plugin for [Vlad the Deployer](http://rubyhitsquad.com/Vlad_the_Deployer.html) with extensions for Nginx, nodeJS, monit and more. The easiest way to use this gem is using Bundler and including it in your Gemfile:
 
-    gem 'vlad', :git=>'git@github.com:dapi/vlad.git'
-    gem 'vlad-extras', :git=>'git@github.com:dapi/vlad-extras.git'
+    gem 'vlad'
+    gem 'vlad-extras'
 
 ## Using the recipes
 
@@ -45,4 +45,4 @@ Load them like this:
 
 ## Copyright
 
-Copyright (c) 2010 Dennis Blöte. 2011 Danil Pismenny. See LICENSE for details.
+Copyright (c) 2010 Dennis Reimann. 2011 Danil Pismenny. See LICENSE for details.

@@ -8,14 +8,14 @@ namespace :vlad do
     run "test -f #{current_path}/#{destination} || ln -s #{shared_path}/#{source} #{current_path}/#{destination}"
   end
 
-
   set :symlinks, {}
 
   desc "Symlinks files (usualy shared)"
   remote_task :symlink, :roles => :web do
+    puts "[Symlink] Linking files"
     if symlinks.is_a? Hash
       symlinks.each_pair do |source, destination|
-        symlink(source, destination)
+        remote_symlink(source, destination)
       end
     else
       symlinks.each do |file|
@@ -23,11 +23,4 @@ namespace :vlad do
       end
     end
   end
-
-
-  # Не работает потому что remote
-  # Rake::Task["vlad:update_symlinks"].enhance do
-  #   Rake::Task['vlad:symlink'].invoke
-  # end
-
 end

@@ -1,5 +1,5 @@
 # Load extra recipes
-%w(symlinks monit new_relic copy bundle rvm thinking_sphinx nginx deploy deploy db_clone hoptoad delayed_job).each do |recipe|
+%w(assets copy db_clone deploy symlinks).each do |recipe|
   require File.dirname(__FILE__) + "/vlad/#{recipe}.rb"
 end
 
