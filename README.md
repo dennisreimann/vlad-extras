@@ -16,18 +16,20 @@ Other recipes can be used by defining them when you load Vlad, for example the :
 
 * Nginx (:web) - Just some basic tasks for starting/stopping Nginx as your webserver.
 * nodeJS (:type) - Tasks for managing your dependencies with [ndistro](http://github.com/visionmedia/ndistro) and starting/stopping your app with [spark](http://github.com/senchalabs/spark/).
+* Monit control
 * ThinkingShpinx control
 * DelayedJob control
 * Airbrake notification
 * NewRelic notification
+* LoopDance support
 * vlad:rvm:trust:current/repo/release Trusting rvmrc
 * vlad:bundle Run bundle --deployment after deploy
 * Support bundle exec rake
 * vlad:copy Copy configuration files into shared (config/database.yml) for example
 * vlad:db:clone Clone remote production database into local development
 * vlad:deploy - configurable deploy tasks
-* LoopDance support
 * vlad:symlink - symlinking to files, copied with vlad:copy for example
+* vlad:assets:precompile - precompiles your apps assets
 
 Load them like this:
 
