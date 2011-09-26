@@ -11,7 +11,7 @@ namespace :vlad do
     vlad:cleanup
   )
 
-  desc "Full deployment cycle: #{deploy_tasks.join(', ')}"
+  desc "Full deployment cycle: #{deploy_tasks.map{|t|t.gsub('vlad:','')}.join(', ')}"
   task "deploy" do
     deploy_tasks.each do |task|
       Rake::Task[task].invoke
