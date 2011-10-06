@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# encoding: utf-8
 require 'vlad'
 
 namespace :vlad do
@@ -22,4 +22,5 @@ namespace :vlad do
   task :setup do
     Rake::Task['vlad:copy'].invoke
   end
+
 end

@@ -1,54 +1,34 @@
-# -*- coding: utf-8 -*-
+# encoding: utf-8
 require 'vlad'
+require "vlad-extras/db_clone"
 
 namespace :vlad do
 
   namespace :db do
 
-    def prepare_psql(config)
-      command=''
-      command << "-h #{config['host']} " unless config['host'].blank?
-      command << "-p #{config['port']} " unless config['port'].blank?
-      command << "-U #{config['username']} " unless config['username'].blank?
-      if config['password'].blank?
-        command << "#{config['database']}"
-      else
-        command << "'dbname=#{config['database']} password=#{config['password']}'"
-      end
-      command
-    end
-
-    desc "Clone the remote production database into the local development"
-    task :clone => :environment do
-      dev_config = ActiveRecord::Base.configurations['development']
-      prod_config = ActiveRecord::Base.configurations['production']
-      command = ""
-
-      unless dev_config['adapter']==prod_config['adapter']
-        puts "Development and production adapters must be similar (#{dev_config['adapter']}!=#{prod_config['adapter']})"
-        exit
-      end
-      case dev_config['adapter']
-        #
-        # Sorry I don't use mysql
-        #
-        # mysqldump app_development | mysql app_test
-        # when 'mysql'
-        #   command << "mysql "
-        #   command << "--host=#{config['host'] || 'localhost'} "
-        #   command << "--port=#{config['port'] || 3306} "
-        #   command << "--user=#{config['username'] || 'root'} "
-        #   command << "--password=#{config['password'] || ''} "
-        #   command << config['database']
+    desc "Clone the remote database into the local database"
+    task :clone => :environment do |t, args|
+      puts "[DB Clone] Cloning #{rails_env} into development database"
+      # Check adapters
+      loc = ActiveRecord::Base.configurations['development']
+      rem = ActiveRecord::Base.configurations[rails_env]
+      adapter = loc['adapter'] == rem['adapter'] ? loc['adapter'] : nil
+      raise "Development and #{rails_env} adapters must be similar" unless adapter
+      # perform
+      case adapter
+      when 'mysql', 'mysql2'
+        rem_cmd  = "mysqldump --add-drop-table #{VladExtras::DbClone.mysql_config(rem)}"
+        loc_cmd = "mysql #{VladExtras::DbClone.mysql_config(loc)}"
       when 'postgresql'
-        remote_command = "pg_dump -cxO " + prepare_psql(prod_config)
-        local_command = "psql " + prepare_psql(dev_config)
+        rem_cmd = "pg_dump -cxO #{VladExtras::DbClone.psql_config(rem)}"
+        loc_cmd = "psql #{VladExtras::DbClone.psql_config(loc)}"
       else
-        puts "Unsupported database adapter: #{config['adapter']}"
+        puts "Unsupported database adapter: #{adapter}"
       end
-      command = "ssh #{domain} \"cd #{current_path}; #{remote_command}\" | #{local_command}"
-      puts command
-      system command
+      puts "ssh #{domain} \"cd #{current_path}; #{rem_cmd}\" | #{loc_cmd}"
+      system "ssh #{domain} \"cd #{current_path}; #{rem_cmd}\" | #{loc_cmd}"
     end
+
   end
+
 end

@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'vlad'
 
 namespace :vlad do
@@ -40,4 +41,5 @@ namespace :vlad do
       Rake::Task["vlad:#{task}"].invoke
     end
   end
+  
 end
