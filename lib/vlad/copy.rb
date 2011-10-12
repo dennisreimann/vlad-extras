@@ -12,9 +12,7 @@ namespace :vlad do
       print "#{file}, "
       dir = File.dirname(file)
       `ssh #{domain} 'mkdir -p #{shared_path}/#{dir}'` if dir
-      cmd = "scp -r #{file} #{domain}:#{shared_path}/#{file}"
-      puts cmd
-      `#{cmd}`
+      `scp -r #{file} #{domain}:#{shared_path}/#{file}`
     end
     puts "Done"
   end

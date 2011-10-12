@@ -13,7 +13,7 @@ namespace :vlad do
   )
 
   desc "Full deployment cycle: #{deploy_tasks.map{ |t| t.gsub('vlad:','')}.join(', ') }"
-  task "deploy" do
+  task :deploy do
     deploy_tasks.each do |task|
       Rake::Task[task].invoke
     end

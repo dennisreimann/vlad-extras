@@ -25,7 +25,6 @@ namespace :vlad do
       else
         puts "Unsupported database adapter: #{adapter}"
       end
-      puts "ssh #{domain} \"cd #{current_path}; #{rem_cmd}\" | #{loc_cmd}"
       system "ssh #{domain} \"cd #{current_path}; #{rem_cmd}\" | #{loc_cmd}"
     end
 
