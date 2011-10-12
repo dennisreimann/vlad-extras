@@ -1,6 +1,6 @@
 # encoding: utf-8
 require 'vlad'
-require "vlad-extras/db_clone"
+require 'vlad-extras/db_clone'
 
 namespace :vlad do
 
@@ -8,7 +8,7 @@ namespace :vlad do
 
     desc "Clone the remote database into the local database"
     task :clone => :environment do |t, args|
-      puts "[DB Clone] Cloning #{rails_env} into development database"
+      puts "[Database] Cloning #{rails_env} into development database"
       # Check adapters
       loc = ActiveRecord::Base.configurations['development']
       rem = ActiveRecord::Base.configurations[rails_env]
@@ -28,6 +28,13 @@ namespace :vlad do
       system "ssh #{domain} \"cd #{current_path}; #{rem_cmd}\" | #{loc_cmd}"
     end
 
+    %w(create drop rollback seed setup).each do |task|
+      desc "#{task.capitalize} monit"
+      remote_task task.to_sym, :roles => :app do
+        puts "[Database] #{task.capitalize} database"
+        run "cd #{current_path} && RAILS_ENV=#{rails_env} #{rake_cmd} db:#{task}"
+      end
+    end
   end
 
 end
