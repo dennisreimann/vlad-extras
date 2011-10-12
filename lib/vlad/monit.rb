@@ -11,7 +11,7 @@ namespace :vlad do
       desc "#{task.capitalize} monit"
       remote_task task.to_sym, :roles => :app do
         puts "[Monit] #{task.capitalize}"
-        run "#{monit_cmd} #{task}"
+        sudo "#{monit_cmd} #{task}"
       end
     end
 

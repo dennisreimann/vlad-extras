@@ -9,7 +9,7 @@ namespace :vlad do
     desc "#{task.capitalize} the web server"
     remote_task "#{task}_web".to_sym, :roles => :web do
       puts "[Nginx] #{task.capitalize}"
-      run "#{web_command} #{task}"
+      sudo "#{web_command} #{task}"
     end
   end
 
