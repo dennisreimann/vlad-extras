@@ -21,4 +21,22 @@ namespace :vlad do
     end
   end
 
+  namespace :nginx do
+
+    desc "Reload the web server"
+    remote_task :reload, :roles => :web do
+      puts "[Nginx] Reloading config"
+      sudo "#{web_command} force-reload"
+    end
+
+    %w(terminate status configtest).each do |task|
+      desc "#{task.capitalize} the web server"
+      remote_task task.to_sym, :roles => :web do
+        puts "[Nginx] #{task.capitalize}"
+        sudo "#{web_command} #{task}"
+      end
+    end
+
+  end
+
 end
