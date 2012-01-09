@@ -8,7 +8,7 @@ namespace :vlad do
     desc "Restart dancers"
     remote_task :restart do
       puts "Restart dancers #{current_release}"
-      run "cd #{current_release} && RAILS_ENV=#{rails_env} rake loop_dance:dancer:restart"
+      run "cd #{current_release} && RAILS_ENV=#{rails_env} #{rake_cmd} loop_dance:dancer:restart"
     end
 
   end
