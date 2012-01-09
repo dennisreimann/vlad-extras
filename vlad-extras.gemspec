@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = "Vlad plugin with extensions for Nginx, nodeJS, monit and more."
   s.description = "This gem provides extra recipes for Vlad the Deployer."
 
-  s.add_development_dependency("vlad", ["~> 2.2"])
+  s.add_development_dependency("vlad", ["~> 2.2.4"])
 
   s.files        = `git ls-files`.split("\n")
   s.executables  = `git ls-files`.split("\n").select{|f| f =~ /^bin/}
