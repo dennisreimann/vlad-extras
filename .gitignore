@@ -1,4 +1,6 @@
 Gemfile.lock
+.rake_tasks~
+.rvmrc
 
 # rcov generated
 coverage
