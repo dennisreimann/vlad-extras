@@ -29,7 +29,7 @@ namespace :vlad do
     end
 
     %w(create drop rollback seed setup).each do |task|
-      desc "#{task.capitalize} monit"
+      desc "#{task.capitalize} database"
       remote_task task.to_sym, :roles => :app do
         puts "[Database] #{task.capitalize} database"
         run "cd #{current_path} && RAILS_ENV=#{rails_env} #{rake_cmd} db:#{task}"
