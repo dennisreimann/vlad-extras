@@ -24,11 +24,14 @@ Then, require the gems in your Rakefile like this:
 
 By loading vlad-extras you get the following default extra recipes:
 
-  *   [Copy](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/copy.rb):
-      Copies files and directories to the remote server via scp.
+  *   [Setup](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/setup.rb):
+      A more flexible way to define the tasks for the server setup.
 
   *   [Deploy](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/deploy.rb):
-      A more flexible way to define the tasks for a full deployment cycle
+      A more flexible way to define the tasks for a full deployment cycle.
+
+  *   [Copy](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/copy.rb):
+      Copies files and directories to the remote server via scp.
 
   *   [Symlinks](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/symlinks.rb):
       Lets you set a symlinks hash and gives you a task that links files and folders from your
