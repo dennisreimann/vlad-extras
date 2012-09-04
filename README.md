@@ -1,51 +1,98 @@
 # vlad-extras
 
-Plugin for [Vlad the Deployer](http://rubyhitsquad.com/Vlad_the_Deployer.html) with extensions for Nginx, nodeJS, monit and more. The easiest way to use this gem is using Bundler and including it in your Gemfile:
+Plugin for [Vlad the Deployer](http://rubyhitsquad.com/Vlad_the_Deployer.html)
+with extensions for Nginx, RVM, Airbrake, Monit and more.
 
-    gem 'vlad'
-    gem 'vlad-extras'
+## Setup
+
+The easiest way to use this gem is using Bundler and including it in your Gemfile:
+
+    gem 'vlad', :require => false
+    gem 'vlad-extras', :require => false
+
+Then, require the gems in your Rakefile like this:
+
+    begin
+      require 'vlad'
+      require 'vlad-extras'
+      Vlad.load # takes an options hash depending on your setup
+    rescue LoadError
+      puts 'Could not load Vlad'
+    end
 
 ## Using the recipes
 
-By loading vlad-extras you get some extra recipes per default:
+By loading vlad-extras you get the following default extra recipes:
 
-* Symlinks: Lets you set a symlinks hash and gives you a task that links files and folders from your shared directory to the current release.
-* Monit: Control monit with start/stop/restart/reload/syntax tasks.
+  *   [Copy](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/copy.rb):
+      Copies files and directories to the remote server via scp.
 
-Other recipes can be used by defining them when you load Vlad, for example the :type and :web flavor:
+  *   [Deploy](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/deploy.rb):
+      A more flexible way to define the tasks for a full deployment cycle
 
-* Nginx (:web) - Just some basic tasks for starting/stopping Nginx as your webserver.
-* Monit control
-* ThinkingShpinx control
-* DelayedJob control
-* Airbrake notification
-* NewRelic notification
-* LoopDance support
-* Whenever support
-* vlad:rvm:trust:current/repo/release Trusting rvmrc
-* vlad:bundle Run bundle --deployment after deploy
-* Support bundle exec rake
-* vlad:copy Copy configuration files into shared (config/database.yml) for example
-* vlad:db:clone Clone remote production database into local development
-* vlad:deploy - configurable deploy tasks
-* vlad:symlink - symlinking to files, copied with vlad:copy for example
-* vlad:assets:precompile - precompiles your apps assets
+  *   [Symlinks](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/symlinks.rb):
+      Lets you set a symlinks hash and gives you a task that links files and folders from your
+      shared directory to the current release.
 
-Load them like this:
+  *   [Assets](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/assets.rb):
+      Tasks for cleaning and precompiling the assets.
 
-    Vlad.load(:web => :nginx, :type => :nodejs)
+  *   [Database](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/db.rb):
+      The standard Rails database tasks plus cloning the remote database into the local database.
+
+Other recipes can be used by defining them when you load Vlad (note that the name of the key does
+not matter, for the extra recipes it is more like a description, the value is the recipe file name):
+
+    Vlad.load(:web => :nginx, :monitoring => :monit, :queue => :delayed_job)
+
+Or you can simply require the files inside your deploy.rb (the load call basically does the same):
+
+    require 'vlad/monit'
+    require 'vlad/delayed_job'
+
+An overview of the recipes incuded in this gem:
+
+  *   [Nginx](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/nginx.rb):
+      Basic tasks for starting/stopping. Add it like this:
+
+  *   [RVM](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/rvm.rb):
+      Wrapper tasks for `rvm rvmrc trust`
+
+  *   [Monit](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/monit.rb):
+      Basic control tasks.
+
+  *   [ThinkingSphinx](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/thinking_sphinx.rb):
+      Basic control tasks.
+
+  *   [DelayedJob](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/delayed_job.rb):
+      Basic control tasks.
+
+  *   [Airbrake](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/airbrake.rb):
+      Task for notifying [Airbrake](https://www.airbrake.io) after the deployment.
+
+  *   [NewRelic](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/new_relic.rb):
+      Task for notifying [NewRelic](http://newrelic.com/) after the deployment.
+
+  *   [LoopDance](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/loop_dance.rb):
+      Task to restart [loop dancers](http://rubygems.org/gems/loop_dance).
+
+  *   [Whenever](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/whenever.rb):
+      Update and clear the crontab using [whenever](http://rubygems.org/gems/whenever).
 
 ## Note on Patches/Pull Requests
 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+  * Fork the project.
+  * Make your feature addition or bug fix.
+  * Commit, do not mess with Rakefile, Gemspec or version.
+    (if you want to have your own version that is fine, but bump version in a
+    commit by itself so it can be ignored when pulling in the other changes)
+  * Send a pull request.
+
+## Contributors
+
+  * Danil Pismenny
 
 ## Copyright
 
-Copyright (c) 2010-2011 Dennis Reimann, Danil Pismenny.
+Copyright (c) 2010-2012 Dennis Reimann.
 See LICENSE for details.

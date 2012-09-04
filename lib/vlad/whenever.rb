@@ -1,7 +1,14 @@
 # encoding: utf-8
+#
+# Tasks:
+#
+#   - vlad:whenever:update_crontab
+#   - vlad:whenever:clear_crontab
+
 namespace :vlad do
 
   namespace :whenever do
+
     set :whenever_command,      "#{bundle_cmd} whenever"
     set :whenever_identifier,   application
     set :whenever_environment,  rails_env
@@ -23,7 +30,7 @@ namespace :vlad do
       which servers the crontab is updated on by setting the :whenever_roles variable.
     DESC
     remote_task :update_crontab, :roles => :app do
-      puts "[Whenever] Update crontab"
+      puts '[Whenever] Update crontab'
       run "cd #{current_path} && #{whenever_command} #{whenever_update_flags}"
     end
 
@@ -39,7 +46,7 @@ namespace :vlad do
       the :whenever_roles variable.
     DESC
     remote_task :clear_crontab, :roles => :app do
-      puts "[Whenever] Clear crontab"
+      puts '[Whenever] Clear crontab'
       run "cd #{latest_release} && #{whenever_command} #{whenever_clear_flags}"
     end
 

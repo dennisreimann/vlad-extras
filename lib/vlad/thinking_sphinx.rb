@@ -1,4 +1,14 @@
 # encoding: utf-8
+#
+# Tasks:
+#
+#   - vlad:thinking_sphinx:start
+#   - vlad:thinking_sphinx:restart
+#   - vlad:thinking_sphinx:stop
+#   - vlad:thinking_sphinx:index
+#   - vlad:thinking_sphinx:reindex
+#   - vlad:thinking_sphinx:config
+
 namespace :vlad do
 
   namespace :thinking_sphinx do

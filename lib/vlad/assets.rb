@@ -1,8 +1,14 @@
 # encoding: utf-8
+#
+# Tasks:
+#
+#   - vlad:assets:clean
+#   - vlad:assets:precompile
+
 namespace :vlad do
 
   namespace :assets do
-    
+
     %w(clean precompile).each do |task|
       desc "#{task.capitalize} assets"
       remote_task task.to_sym, :roles => :app do
@@ -10,7 +16,7 @@ namespace :vlad do
         run "cd #{current_path} && RAILS_ENV=#{rails_env} #{rake_cmd} assets:#{task}"
       end
     end
-    
+
   end
 
 end

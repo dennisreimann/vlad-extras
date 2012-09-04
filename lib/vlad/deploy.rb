@@ -1,5 +1,17 @@
 # encoding: utf-8
-require 'vlad'
+#
+# Tasks:
+#
+#   - vlad:deploy
+#
+# Example Configuration:
+#
+#   set :deploy_tasks, %w(
+#     vlad:update
+#     vlad:symlink
+#     vlad:start_app
+#     vlad:cleanup
+#   )
 
 namespace :vlad do
 
@@ -12,7 +24,7 @@ namespace :vlad do
     vlad:cleanup
   )
 
-  desc "Full deployment cycle: #{deploy_tasks.map{ |t| t.gsub('vlad:','')}.join(', ') }"
+  desc "Full deployment cycle: #{deploy_tasks.map{ |t| t.gsub('vlad:','')}.join(', ')}"
   task :deploy do
     deploy_tasks.each do |task|
       Rake::Task[task].invoke

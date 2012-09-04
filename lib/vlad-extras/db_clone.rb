@@ -9,7 +9,7 @@ module VladExtras
       cmd += config['database']
       cmd
     end
-    
+
     def self.psql_config(config)
       cmd  = " "
       cmd += "-h #{config['host']} " unless config['host'].blank?

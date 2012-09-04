@@ -1,15 +1,24 @@
 # encoding: utf-8
-require 'vlad'
+#
+# Tasks:
+#
+#   - vlad:db:create
+#   - vlad:db:setup
+#   - vlad:db:seed
+#   - vlad:db:rollback
+#   - vlad:db:drop
+#   - vlad:db:clone
+
 require 'vlad-extras/db_clone'
 
 namespace :vlad do
 
   namespace :db do
 
-    desc "Clone the remote database into the local database"
+    desc 'Clone the remote database into the local database'
     task :clone => :environment do |t, args|
       puts "[Database] Cloning #{rails_env} into development database"
-      # Check adapters
+      # check adapters
       loc = ActiveRecord::Base.configurations['development']
       rem = ActiveRecord::Base.configurations[rails_env]
       adapter = loc['adapter'] == rem['adapter'] ? loc['adapter'] : nil

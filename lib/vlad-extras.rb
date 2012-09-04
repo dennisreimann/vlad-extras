@@ -1,8 +1,3 @@
-# Load extra recipes
-%w(assets copy db deploy symlinks).each do |recipe|
-  require File.dirname(__FILE__) + "/vlad/#{recipe}.rb"
-end
-
 # http://blog.jayfields.com/2008/02/rake-task-overwriting.html
 class Rake::Task
   def overwrite(&block)
@@ -19,3 +14,7 @@ Rake::TaskManager.class_eval do
   end
 end
 
+# Load default recipes
+%w(assets copy db deploy symlinks).each do |recipe|
+  require File.dirname(__FILE__) + "/vlad/#{recipe}.rb"
+end

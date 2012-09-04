@@ -1,11 +1,14 @@
 # encoding: utf-8
-require 'vlad'
+#
+# Tasks:
+#
+#   - vlad:loop_dance:restart
 
 namespace :vlad do
 
   namespace :loop_dance do
 
-    desc "Restart dancers"
+    desc 'Restart dancers'
     remote_task :restart do
       puts "Restart dancers #{current_release}"
       run "cd #{current_release} && RAILS_ENV=#{rails_env} #{rake_cmd} loop_dance:dancer:restart"

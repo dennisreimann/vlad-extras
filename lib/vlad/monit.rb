@@ -1,11 +1,22 @@
 # encoding: utf-8
-require 'vlad'
+#
+# Tasks:
+#
+#   - vlad:monit:start
+#   - vlad:monit:restart
+#   - vlad:monit:stop
+#   - vlad:monit:reload
+#   - vlad:monit:syntax
+#
+# Example Configuration:
+#
+#   set :monit_cmd, '/etc/init.d/monit'
 
 namespace :vlad do
 
   namespace :monit do
 
-    set :monit_cmd, "/etc/init.d/monit"
+    set :monit_cmd, '/etc/init.d/monit'
 
     %w(start restart stop).each do |task|
       desc "#{task.capitalize} monit"
@@ -15,15 +26,15 @@ namespace :vlad do
       end
     end
 
-    desc "Reload monit config"
+    desc 'Reload monit config'
     remote_task :reload, :roles => :web  do
-      puts "[Monit] Reloading config"
+      puts '[Monit] Reloading config'
       sudo "#{monit_cmd} force-reload"
     end
 
-    desc "Check monit config syntax"
+    desc 'Check monit config syntax'
     remote_task :syntax, :roles => :web  do
-      puts "[Monit] Syntax check"
+      puts '[Monit] Syntax check'
       sudo "#{monit_cmd} syntax"
     end
 

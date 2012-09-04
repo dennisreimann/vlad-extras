@@ -1,14 +1,25 @@
 # encoding: utf-8
-require 'vlad'
-require "vlad-extras/symlink"
+#
+# Tasks:
+#
+#   - vlad:symlink
+#
+# Example Configuration:
+#
+#   set :symlinks, {
+#     'assets'              => 'public/assets',
+#     'config/database.yml' => 'config/database.yml'
+#   }
+
+require 'vlad-extras/symlink'
 
 namespace :vlad do
 
   set :symlinks, {}
 
-  desc "Symlinks files (usualy shared)"
+  desc 'Symlinks files and folders from shared directory to the current release'
   remote_task :symlink, :roles => :web do
-    puts "[Symlink] Linking files"
+    puts '[Symlink] Linking files'
     if symlinks.is_a? Hash
       symlinks.each_pair do |source, destination|
         VladExtras::Symlink.remote_symlink(source, destination)
@@ -19,5 +30,5 @@ namespace :vlad do
       end
     end
   end
-  
+
 end
