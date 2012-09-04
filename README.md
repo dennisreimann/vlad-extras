@@ -16,7 +16,6 @@ Other recipes can be used by defining them when you load Vlad, for example the :
 
 * Nginx (:web) - Just some basic tasks for starting/stopping Nginx as your webserver.
 * Monit control
-* Amon control
 * ThinkingShpinx control
 * DelayedJob control
 * Airbrake notification
