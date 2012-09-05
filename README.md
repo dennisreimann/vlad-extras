@@ -82,6 +82,9 @@ An overview of the recipes incuded in this gem:
   *   [Whenever](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/whenever.rb):
       Update and clear the crontab using [whenever](http://rubygems.org/gems/whenever).
 
+  *   [Uberspace](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/uberspace.rb):
+      Setup and maintenance tasks for Rails apps hosted on [Uberspace](http://uberspace.de).
+
 ## Note on Patches/Pull Requests
 
   * Fork the project.
