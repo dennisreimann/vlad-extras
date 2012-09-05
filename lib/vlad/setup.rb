@@ -9,6 +9,7 @@
 #   set :setup_tasks, %w(
 #     vlad:setup_app
 #     vlad:copy:files
+#     vlad:assets:create_shared_dir
 #   )
 
 namespace :vlad do
