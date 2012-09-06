@@ -53,8 +53,6 @@
 #     [...]
 #   )
 
-require 'vlad-extras/remote_file'
-
 set :deploy_to,         "/var/www/virtual/#{user}/rails/#{application}"
 set :uberspace_home,    "/home/#{user}"
 set :uberspace_service, "#{uberspace_home}/service/rails-#{application}"
@@ -73,7 +71,7 @@ namespace :vlad do
     desc 'Setup custom services for your user'
     remote_task :setup_svscan do
       puts '[Uberspace] Setup svscan'
-      run 'uberspace-setup-svscan ; echo 0'
+      run 'uberspace-setup-svscan ; echo' # echo to ensure non-error exit
     end
 
     desc 'Setup service script for the app'
@@ -111,10 +109,10 @@ exec multilog t ./main
     remote_task :setup_domain_symlink do
       puts '[Uberspace] Setup domain symlink'
       # ensure that there is a current public path we can symlink to
-      Rake::Task['vlad:update'].invoke unless VladExtras::RemoteFile.exists?(current_path)
+      Rake::Task['vlad:update'].invoke unless VladExtras::Remote.exists?(current_path)
       public_path = "#{current_path}/public"
       domain_path = "/var/www/virtual/#{user}/#{domain}"
-      run "mkdir -p #{public_path}" unless VladExtras::RemoteFile.exists?(public_path)
+      run "mkdir -p #{public_path}" unless VladExtras::Remote.exists?(public_path)
       run "ln -nfs #{public_path} #{domain_path}"
     end
 
@@ -141,7 +139,7 @@ exec multilog t ./main
   socket: #{db_socket}
       EOF
       # check for already existing htaccess
-      if VladExtras::RemoteFile.exists?(database_yml)
+      if VladExtras::Remote.exists?(database_yml)
         puts "\nYou already have a custom database.yml, located at\n#{database_yml}"
         puts "Please verify that it contains the following lines in order to work properly:"
         puts "\n#{content}\n"
@@ -169,7 +167,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ http://localhost:#{app_server_port}/$1 [P]
       EOF
       # check for already existing htaccess
-      if VladExtras::RemoteFile.exists?(htaccess)
+      if VladExtras::Remote.exists?(htaccess)
         puts "\nYou already have a custom .htaccess, located at\n#{htaccess}"
         puts "Please verify that it contains the following lines in order to work properly:"
         puts "\n#{content}\n"

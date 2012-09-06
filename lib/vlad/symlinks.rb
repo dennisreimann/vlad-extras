@@ -11,8 +11,6 @@
 #     'config/database.yml' => 'config/database.yml'
 #   }
 
-require 'vlad-extras/symlink'
-
 namespace :vlad do
 
   set :symlinks, {}
@@ -22,11 +20,11 @@ namespace :vlad do
     puts '[Symlink] Linking files'
     if symlinks.is_a? Hash
       symlinks.each_pair do |source, destination|
-        VladExtras::Symlink.remote_symlink(source, destination)
+        VladExtras::Remote.symlink(source, destination)
       end
     else
       symlinks.each do |file|
-        VladExtras::Symlink.remote_symlink(file, file)
+        VladExtras::Remote.symlink(file, file)
       end
     end
   end

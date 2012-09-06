@@ -1,5 +1,5 @@
 module VladExtras
-  module DbClone
+  module Database
     def self.mysql_config(config)
       cmd  = " "
       cmd += "-h #{config['host']} " unless config['host'].blank?

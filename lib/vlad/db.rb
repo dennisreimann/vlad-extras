@@ -9,8 +9,6 @@
 #   - vlad:db:drop
 #   - vlad:db:clone
 
-require 'vlad-extras/db_clone'
-
 namespace :vlad do
 
   namespace :db do
@@ -26,11 +24,11 @@ namespace :vlad do
       # perform
       case adapter
       when 'mysql', 'mysql2'
-        rem_cmd  = "mysqldump --add-drop-table #{VladExtras::DbClone.mysql_config(rem)}"
-        loc_cmd = "mysql #{VladExtras::DbClone.mysql_config(loc)}"
+        rem_cmd  = "mysqldump --add-drop-table #{VladExtras::Database.mysql_config(rem)}"
+        loc_cmd = "mysql #{VladExtras::Database.mysql_config(loc)}"
       when 'postgresql'
-        rem_cmd = "pg_dump -cxO #{VladExtras::DbClone.psql_config(rem)}"
-        loc_cmd = "psql #{VladExtras::DbClone.psql_config(loc)}"
+        rem_cmd = "pg_dump -cxO #{VladExtras::Database.psql_config(rem)}"
+        loc_cmd = "psql #{VladExtras::Database.psql_config(loc)}"
       else
         puts "Unsupported database adapter: #{adapter}"
       end
