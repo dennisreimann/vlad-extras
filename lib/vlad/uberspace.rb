@@ -163,6 +163,40 @@ exec multilog t ./main
       htaccess = "#{current_path}/public/.htaccess"
       content = <<-EOF
 RewriteEngine On
+RewriteBase /
+
+# ensure the browser supports gzip encoding
+RewriteCond %{HTTP:Accept-Encoding} \\b(x-)?gzip\\b
+RewriteCond %{REQUEST_FILENAME}.gz -s
+RewriteRule ^(.+) $1.gz [L]
+
+# ensure correct Content-Type and add encoding header
+<FilesMatch \\.css\\.gz$>
+  ForceType text/css
+  Header set Content-Encoding gzip
+</FilesMatch>
+
+<FilesMatch \\.js\\.gz$>
+  ForceType text/javascript
+  Header set Content-Encoding gzip
+</FilesMatch>
+
+# cache assets like forever
+<FilesMatch \\.(js|css|gz|jpe?g|gif|png|ico)$>
+  Header unset ETag
+  FileETag None
+  ExpiresActive On
+  ExpiresDefault "access plus 1 year"
+</FilesMatch>
+
+# maintenance mode
+ErrorDocument 503 /system/maintenance.html
+RewriteCond %{REQUEST_URI} !.(css|gif|jpg|png)$
+RewriteCond #{current_path}/public/system/maintenance.html -f
+RewriteCond %{SCRIPT_FILENAME} !maintenance.html
+RewriteRule ^.*$ - [redirect=503,last]
+
+# let rails handle everything else
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ http://localhost:#{app_server_port}/$1 [P]
       EOF
