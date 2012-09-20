@@ -9,6 +9,8 @@
 #   - vlad:db:drop
 #   - vlad:db:clone
 
+require 'vlad/rails'
+
 namespace :vlad do
 
   namespace :db do

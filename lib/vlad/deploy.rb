@@ -13,6 +13,8 @@
 #     vlad:cleanup
 #   )
 
+require 'bundler/vlad'
+
 namespace :vlad do
 
   set :deploy_tasks, %w(
