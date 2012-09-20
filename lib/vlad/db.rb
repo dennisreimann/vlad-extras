@@ -32,12 +32,15 @@ namespace :vlad do
       else
         puts "Unsupported database adapter: #{adapter}"
       end
-      system "ssh #{domain} \"cd #{current_path}; #{rem_cmd}\" | #{loc_cmd}"
+      target_host = Rake::RemoteTask.hosts_for(:app).first
+      system "ssh #{target_host} \"cd #{current_path}; #{rem_cmd}\" | #{loc_cmd}"
     end
 
     %w(create drop rollback seed setup).each do |task|
       desc "#{task.capitalize} database"
       remote_task task.to_sym, :roles => :app do
+        break unless target_host == Rake::RemoteTask.hosts_for(:app).first
+
         puts "[Database] #{task.capitalize} database"
         run "cd #{current_path} && RAILS_ENV=#{rails_env} #{rake_cmd} db:#{task}"
       end
