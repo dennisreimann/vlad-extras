@@ -3,8 +3,8 @@
 # Tasks:
 #
 #   - vlad:rvm:trust:scm_repo
-#   - vlad:rvm:trust:current   # run after symlink creation
-#   - vlad:rvm:trust:release   # run after symlink creation
+#   - vlad:rvm:trust:current   # run after update
+#   - vlad:rvm:trust:release   # run after update
 
 namespace :vlad do
 
@@ -17,13 +17,13 @@ namespace :vlad do
         run "rvm rvmrc trust #{scm_path}/repo"
       end
 
-      desc 'Trust current (run after symlink creation)'
+      desc 'Trust current (run after update)'
       remote_task :current do
         puts '[RVM] Trust current'
         run "rvm rvmrc trust #{current_path}"
       end
 
-      desc 'Trust release (run after symlink creation)'
+      desc 'Trust release (run after update)'
       remote_task :release do
         puts '[RVM] Trust release'
         run "rvm rvmrc trust #{release_path}"
