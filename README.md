@@ -33,10 +33,6 @@ By loading vlad-extras you get the following default extra recipes:
   *   [Copy](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/copy.rb):
       Copies files and directories to the remote server via scp.
 
-  *   [Symlinks](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/symlinks.rb):
-      Lets you set a symlinks hash and gives you a task that links files and folders from your
-      shared directory to the current release.
-
   *   [Assets](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/assets.rb):
       Tasks for cleaning and precompiling the assets.
 
