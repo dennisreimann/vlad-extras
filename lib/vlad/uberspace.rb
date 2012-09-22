@@ -49,7 +49,6 @@
 #   set :deploy_tasks, %w(
 #     vlad:update
 #     vlad:uberspace:create_reverse_proxy_htaccess
-#     vlad:symlink
 #     [...]
 #   )
 
