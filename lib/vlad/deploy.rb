@@ -13,12 +13,14 @@
 #   )
 
 require 'bundler/vlad'
+require 'vlad/custom_permissions'
 
 namespace :vlad do
 
   set :deploy_tasks, %w(
     vlad:update
     vlad:symlink
+    vlad:custom_permissions:fix
     vlad:bundle:install
     vlad:migrate
     vlad:start_app
