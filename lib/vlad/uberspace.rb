@@ -19,6 +19,13 @@
 #   - vlad:restart_app
 #   - vlad:stop_app
 #
+# Hint: uberspace doesn't allow concurrent ssh connections.
+# You will need to use shared ssh connections, otherwise vlad remote tasks won't work as expected.
+# Add the followiwng lines at the top of your ~/.ssh/config to enable ssh shared connections: 
+# ControlMaster auto
+# ControlPath /tmp/ssh_mux_%h_%p_%r
+# ControlPersist 15m 
+#
 # Example Configuration:
 #
 #   set :app_server_port, 87654
