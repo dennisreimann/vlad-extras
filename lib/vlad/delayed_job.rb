@@ -15,8 +15,8 @@ namespace :vlad do
 
   namespace :delayed_job do
 
-    set :delayed_job_cmd, 'script/delayed_job'
-    set :dj_processes_count, nil
+    set(:delayed_job_cmd)    { 'script/delayed_job' }
+    set(:dj_processes_count) { nil }
 
     %w(start restart stop).each do |task|
       desc "#{task.capitalize} the delayed_job process(es)"

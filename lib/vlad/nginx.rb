@@ -18,7 +18,7 @@
 
 namespace :vlad do
 
-  set :web_command, '/etc/init.d/nginx'
+  set(:web_command) { '/etc/init.d/nginx' }
 
   %w(start restart stop).each do |task|
     desc "#{task.capitalize} the web server"

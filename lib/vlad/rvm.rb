@@ -12,7 +12,7 @@ namespace :vlad do
 
     namespace :trust do
 
-      set :sudo_cmd, "rvmsudo"
+      set(:sudo_cmd) { "rvmsudo" }
 
       append(:command_prefix), 'if [ -s "/etc/profile.d/rvm.sh" ] ; then source "/etc/profile.d/rvm.sh"'
       append(:command_prefix), 'if [ -s "${HOME}/.rvmrc" ] ; then source "${HOME}/.rvmrc" ; fi'

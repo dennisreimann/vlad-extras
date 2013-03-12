@@ -20,12 +20,12 @@ namespace :vlad do
 
   namespace :sidekiq do
 
-    set :sidekiq_cmd,       "#{bundle_cmd} exec sidekiq"
-    set :sidekiqctl_cmd,    "#{bundle_cmd} exec sidekiqctl"
-    set :sidekiq_pid,       "#{current_path}/tmp/pids/sidekiq.pid"
-    set :sidekiq_env,       "production"
-    set :sidekiq_processes, 1
-    set :sidekiq_timeout,   10
+    set(:sidekiq_cmd)       { "#{bundle_cmd} exec sidekiq" }
+    set(:sidekiqctl_cmd)    { "#{bundle_cmd} exec sidekiqctl" }
+    set(:sidekiq_pid)       { "#{current_path}/tmp/pids/sidekiq.pid" }
+    set(:sidekiq_env)       { "production" }
+    set(:sidekiq_processes) { 1 }
+    set(:sidekiq_timeout)   { 10 }
 
     def for_each_process(&block)
       sidekiq_processes.times do |idx|

@@ -16,7 +16,7 @@ namespace :vlad do
 
   namespace :monit do
 
-    set :monit_cmd, '/etc/init.d/monit'
+    set(:monit_cmd) { '/etc/init.d/monit' }
 
     %w(start restart stop).each do |task|
       desc "#{task.capitalize} monit"
