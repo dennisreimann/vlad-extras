@@ -84,6 +84,9 @@ An overview of the recipes incuded in this gem:
   *   [Uberspace](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/uberspace.rb):
       Setup and maintenance tasks for Rails apps hosted on [Uberspace](http://uberspace.de).
 
+  *   [Sidekiq](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/sidekiq.rb):
+      Basic control tasks.
+
 ## Note on Patches/Pull Requests
 
   * Fork the project.
