@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.7.1
+
+* Improved variable bindings
+* Sidekiq: Fixed restart task
+
 ## 0.7.0
 
 * Sidekiq: Added recipe
