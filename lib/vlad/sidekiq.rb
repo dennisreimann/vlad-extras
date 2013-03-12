@@ -59,8 +59,8 @@ namespace :vlad do
 
     desc "Restart sidekiq"
     remote_task :restart, :roles => :app do
-      stop
-      start
+      Rake::Task["vlad:sidekiq:stop"].invoke
+      Rake::Task["vlad:sidekiq:start"].invoke
     end
 
   end
