@@ -36,9 +36,6 @@ By loading vlad-extras you get the following default extra recipes:
   *   [Assets](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/assets.rb):
       Tasks for cleaning and precompiling the assets.
 
-  *   [Custom permissions](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/custom_permissions.rb):
-      Tasks for you paranoid sysadmins to enforce custom permissions.
-
   *   [Database](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/db.rb):
       The standard Rails database tasks plus cloning the remote database into the local database.
 
@@ -86,6 +83,9 @@ An overview of the recipes incuded in this gem:
 
   *   [Sidekiq](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/sidekiq.rb):
       Basic control tasks.
+
+  *   [Custom permissions](https://github.com/dennisreimann/vlad-extras/blob/master/lib/vlad/custom_permissions.rb):
+      Tasks for you paranoid sysadmins to enforce custom permissions.
 
 ## Note on Patches/Pull Requests
 
