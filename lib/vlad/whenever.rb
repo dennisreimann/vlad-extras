@@ -9,12 +9,12 @@ namespace :vlad do
 
   namespace :whenever do
 
-    set :whenever_command,      "#{bundle_cmd} whenever"
-    set :whenever_identifier,   application
-    set :whenever_environment,  rails_env
-    set :whenever_variables,    "environment=#{whenever_environment}"
-    set :whenever_update_flags, "--update-crontab #{whenever_identifier} --set #{whenever_variables}"
-    set :whenever_clear_flags,  "--clear-crontab #{whenever_identifier}"
+    set(:whenever_command)      { "#{bundle_cmd} exec whenever" }
+    set(:whenever_identifier)   { application }
+    set(:whenever_environment)  { rails_env }
+    set(:whenever_variables)    { "environment=#{whenever_environment}" }
+    set(:whenever_update_flags) { "--update-crontab #{whenever_identifier} --set #{whenever_variables}" }
+    set(:whenever_clear_flags)  { "--clear-crontab #{whenever_identifier}" }
 
     desc <<-DESC
       Update application's crontab entries using Whenever. You can configure \
