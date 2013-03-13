@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.7.2
+
+* RVM: Fixed typo in recipe
+* Sidekiq: Fixed start task
+
 ## 0.7.1
 
 * Improved variable bindings

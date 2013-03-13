@@ -53,7 +53,7 @@ namespace :vlad do
     remote_task :start, :roles => :app do
       puts "[Sidekiq] Start"
       for_each_process do |pid_file, idx|
-        run "cd #{current_path} ; nohup #{sidekiq_cmd} -e #{sidekiq_env} -C #{current_path}/config/sidekiq.yml -i #{idx} -P #{pid_file} >> #{current_path}/log/sidekiq.log 2>&1 &", :pty => false
+        run "cd #{current_path} ; nohup #{sidekiq_cmd} -e #{sidekiq_env} -C #{current_path}/config/sidekiq.yml -i #{idx} -P #{pid_file} >> #{current_path}/log/sidekiq.log 2>&1 &"
       end
     end
 
