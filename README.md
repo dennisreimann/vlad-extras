@@ -3,6 +3,8 @@
 Plugin for [Vlad the Deployer](http://rubyhitsquad.com/Vlad_the_Deployer.html)
 with extensions for Nginx, RVM, Airbrake, Monit and more.
 
+[![Gem Version](https://badge.fury.io/rb/vlad-extras.png)](http://badge.fury.io/rb/vlad-extras)
+
 ## Setup
 
 The easiest way to use this gem is using Bundler and including it in your Gemfile:
