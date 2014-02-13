@@ -30,7 +30,7 @@ namespace :vlad do
     deploy_tasks.each do |task|
       # symlink is now obsolete and issue a warning, so we call it only if it
       # has a non-empty configuration.
-      Rake::Task[task].invoke unless task == "vlad:symlink" && !symlinks.empty?
+      Rake::Task[task].invoke unless task == "vlad:symlink" && symlinks.empty?
     end
   end
 
