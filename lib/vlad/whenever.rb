@@ -47,7 +47,7 @@ namespace :vlad do
     DESC
     remote_task :clear_crontab, :roles => :app do
       puts '[Whenever] Clear crontab'
-      run "cd #{latest_release} && #{whenever_command} #{whenever_clear_flags}"
+      run "cd #{current_path} && #{whenever_command} #{whenever_clear_flags}"
     end
 
   end
